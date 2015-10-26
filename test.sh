@@ -4,8 +4,8 @@ main() {
   echo it works with a single file
   setup
   ./backslash-n "$FILE_1"
-  diff -w <(hexdump "$FILE_1") <(cat <<EOF
-    0000000 66 6f 6f 0a
+  diff -w <(od -a "$FILE_1") <(cat <<EOF
+    0000000 f o o nl
     0000004
 EOF
 )
@@ -15,8 +15,8 @@ EOF
   setup
   ./backslash-n "$FILE_1"
   ./backslash-n "$FILE_1"
-  diff -w <(hexdump "$FILE_1") <(cat <<EOF
-    0000000 66 6f 6f 0a
+  diff -w <(od -a "$FILE_1") <(cat <<EOF
+    0000000 f o o nl
     0000004
 EOF
 )
@@ -25,13 +25,13 @@ EOF
   echo it works with multiple files
   setup
   ./backslash-n "$FILE_1" "$FILE_2"
-  diff -w <(hexdump "$FILE_1") <(cat <<EOF
-    0000000 66 6f 6f 0a
+  diff -w <(od -a "$FILE_1") <(cat <<EOF
+    0000000 f o o nl
     0000004
 EOF
 )
-  diff -w <(hexdump "$FILE_2") <(cat <<EOF
-    0000000 62 61 72 0a
+  diff -w <(od -a "$FILE_2") <(cat <<EOF
+    0000000 b a r nl
     0000004
 EOF
 )
