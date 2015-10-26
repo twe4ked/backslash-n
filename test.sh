@@ -1,8 +1,6 @@
 #!/bin/bash -e
 
 main() {
-  build
-
   echo it works with a single file
   setup
   ./backslash-n "$FILE_1"
@@ -50,18 +48,14 @@ EOF
 }
 
 setup() {
-  FILE_1="$(mktemp -t backslash-n)"
-  FILE_2="$(mktemp -t backslash-n)"
+  FILE_1="$(mktemp -t backslash-n.XXXXXX)"
+  FILE_2="$(mktemp -t backslash-n.XXXXXX)"
   echo -n foo > "$FILE_1"
   echo -n bar > "$FILE_2"
 }
 
 teardown() {
   rm "$FILE_1" "$FILE_2"
-}
-
-build() {
-  make -s
 }
 
 main
